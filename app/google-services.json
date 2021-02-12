@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "100753382146",
+    "firebase_url": "https://proyecto-integrador-2-4b22d-default-rtdb.firebaseio.com",
+    "project_id": "proyecto-integrador-2-4b22d",
+    "storage_bucket": "proyecto-integrador-2-4b22d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:100753382146:android:a85b810fd6e04b8774001b",
+        "android_client_info": {
+          "package_name": "com.example.proyecto_integrador_2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "100753382146-c0ukb76ua15to7fhiopjfp2bd8b9h6sc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdlNeu2WzvfssojR0VKI_rGP72ovV1ZHI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "100753382146-c0ukb76ua15to7fhiopjfp2bd8b9h6sc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
