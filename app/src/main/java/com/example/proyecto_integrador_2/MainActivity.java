@@ -2,6 +2,7 @@ package com.example.proyecto_integrador_2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -37,14 +38,18 @@ public class MainActivity extends AppCompatActivity {
 
     public void login(View v) {
         mAuth = FirebaseAuth.getInstance();
+        Log.d("mAuth",mAuth.toString());
+        Log.d("email",editTextEmail.getText().toString());
+        Log.d("password",editTextPassword.getText().toString());
         mAuth.signInWithEmailAndPassword(editTextEmail.getText().toString(), editTextPassword.getText().toString())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            //Log.d(TAG, "signInWithEmail:success");
+                            Log.d("Login", "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+
                             showHome(user);
                         } else {
                             // If sign in fails, display a message to the user.
