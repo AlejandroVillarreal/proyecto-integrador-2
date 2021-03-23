@@ -16,7 +16,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity {
+public class login extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private EditText editTextEmail;
     private EditText editTextPassword;
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextPassword = findViewById(R.id.editTextPassword);
         // Write a message to the database
@@ -36,7 +36,31 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private boolean email_validation(){
+        String emailInput = editTextEmail.getText().toString().trim();
+        if (emailInput.isEmpty()){
+            editTextEmail.setError("Field can't be empty");
+            return false;
+        } else {
+            editTextEmail.setError(null);
+            return true;
+        }
+    }
+
+    private boolean password_validation(){
+        String emailInput = editTextPassword.getText().toString().trim();
+        if (emailInput.isEmpty()){
+            editTextPassword.setError("Field can't be empty");
+            return false;
+        } else {
+            editTextPassword.setError(null);
+            return true;
+        }
+    }
     public void login(View v) {
+        if (!email_validation() |   !password_validation() ){
+            return;
+        }
         mAuth = FirebaseAuth.getInstance();
         Log.d("mAuth",mAuth.toString());
         Log.d("email",editTextEmail.getText().toString());
@@ -54,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             // If sign in fails, display a message to the user.
                             //Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(MainActivity.this, "Authentication failed.",
+                            Toast.makeText(login.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                             //updateUI(null);
                             // ...
@@ -66,12 +90,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void register(View v){
-        Intent intent = new Intent(MainActivity.this,Register.class);
+        Intent intent = new Intent(login.this,Register.class);
         startActivity(intent);
     }
 
     private void showHome(FirebaseUser user) {
-        Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+        Intent intent = new Intent(login.this, MainActivity2.class);
         intent.putExtra("uid", user.getUid());
         startActivity(intent);
     }

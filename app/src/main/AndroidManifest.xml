@@ -11,7 +11,7 @@
         android:theme="@style/Theme.Proyectointegrador2">
         <activity android:name=".Register"></activity>
         <activity android:name=".MainActivity2" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
