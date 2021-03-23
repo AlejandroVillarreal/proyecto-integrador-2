@@ -65,6 +65,11 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
+    public void register(View v){
+        Intent intent = new Intent(MainActivity.this,Register.class);
+        startActivity(intent);
+    }
+
     private void showHome(FirebaseUser user) {
         Intent intent = new Intent(MainActivity.this, MainActivity2.class);
         intent.putExtra("uid", user.getUid());
