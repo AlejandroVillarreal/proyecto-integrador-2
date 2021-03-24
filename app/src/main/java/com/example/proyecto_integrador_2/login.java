@@ -95,7 +95,7 @@ public class login extends AppCompatActivity {
     }
 
     private void showHome(FirebaseUser user) {
-        Intent intent = new Intent(login.this, MainActivity2.class);
+        Intent intent = new Intent(login.this, MainActivity.class);
         intent.putExtra("uid", user.getUid());
         startActivity(intent);
     }

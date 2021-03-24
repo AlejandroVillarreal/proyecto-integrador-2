@@ -30,7 +30,7 @@ public class MainActivity2 extends AppCompatActivity {
         showEmail();
     }
 
-    public void showEmail() {
+    private void showEmail() {
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         DatabaseReference getEmailFromDatabase = database.getReference("Users").child(userID).child("email");
