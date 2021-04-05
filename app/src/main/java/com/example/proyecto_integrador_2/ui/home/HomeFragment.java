@@ -1,38 +1,69 @@
 package com.example.proyecto_integrador_2.ui.home;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyecto_integrador_2.R;
+import com.example.proyecto_integrador_2.data.database.entities.UserEntity;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements ProfileInterface {
 
+    private static final String TAG = "HomeFragment";
     private HomeViewModel homeViewModel;
+    private TextView home_username;
+    private String userID;
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase database;
+    private RecyclerView home_recycler_view;
+    private myAdapter adapter;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+        //userID = getArguments().getString("uid");
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+        home_recycler_view = root.findViewById(R.id.home_recycler_view);
+        home_recycler_view.setLayoutManager(new LinearLayoutManager(root.getContext()));
 
-        final TextView textView = root.findViewById(R.id.text_home);
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        FirebaseRecyclerOptions<UserEntity> options =
+                new FirebaseRecyclerOptions.Builder<UserEntity>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Users"), UserEntity.class)
+                        .build();
+        adapter = new myAdapter(options, this);
+        home_recycler_view.setAdapter(adapter);
         return root;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        adapter.startListening();
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        adapter.stopListening();
+
+    }
+
+
+    @Override
+    public void profileClicked(UserEntity userEntity) {
+        Log.d(TAG, "profileClicked: working");
+        //TODO Implementar vista de usuario
     }
 }

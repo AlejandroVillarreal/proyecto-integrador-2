@@ -1,4 +1,4 @@
-package com.example.proyecto_integrador_2.ui.gallery;
+package com.example.proyecto_integrador_2.ui.slideshow;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.proyecto_integrador_2.R;
 
-public class GalleryFragment extends Fragment {
+public class ContactsFragment extends Fragment {
 
-    private GalleryViewModel galleryViewModel;
+    private ContactsViewModel contactsViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        galleryViewModel =
-                new ViewModelProvider(this).get(GalleryViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_gallery, container, false);
-        final TextView textView = root.findViewById(R.id.text_gallery);
-        galleryViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        contactsViewModel =
+                new ViewModelProvider(this).get(ContactsViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_slideshow, container, false);
+        final TextView textView = root.findViewById(R.id.text_slideshow);
+        contactsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

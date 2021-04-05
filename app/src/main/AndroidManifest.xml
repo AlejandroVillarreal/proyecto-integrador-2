@@ -3,6 +3,7 @@
     package="com.example.proyecto_integrador_2">
 
     <application
+        android:name=".ServiceFinderApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -12,15 +13,21 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/Theme.Proyectointegrador2.NoActionBar"></activity>
+            android:theme="@style/Theme.Proyectointegrador2.NoActionBar" />
         <activity android:name=".Register" />
-        <activity android:name=".MainActivity2" />
-        <activity android:name=".login">
+        <activity android:name=".MainActivity2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".login">
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
+
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
         </activity>
     </application>
 
