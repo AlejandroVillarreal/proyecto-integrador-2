@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -27,16 +29,24 @@ import java.util.Map;
 public class ProfileFragment extends Fragment {
     private FirebaseAuth mAuth;
     private ProfileViewModel profileViewModel;
+    private EditText editTextName;
+    private EditText editTextEmail;
+    private EditText editTextPhone;
+    private EditText editTextBuisness;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
-
+        editTextName = (EditText) root.findViewById(R.id.editTextName);
+        editTextEmail = (EditText) root.findViewById(R.id.editTextEmail);
+        editTextPhone = (EditText) root.findViewById(R.id.editTextPhone);
+        editTextBuisness = (EditText) root.findViewById(R.id.editTextBuisness);
+        this.updateUser();
         return root;
     }
 
-    public void UpdateUser(){
+    public void updateUser(){
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         String email = user.getEmail();
@@ -47,32 +57,19 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (task.isSuccessful()){
+                    Map<String,String> map = new HashMap<>();
                     for (DataSnapshot messageSnapshot: task.getResult().getChildren()) {
-                        String name = (String) messageSnapshot.child("name").getValue();
-                        String message = (String) messageSnapshot.child("message").getValue();
-                    }
-                    //Map<String, Object> map = task.getResult().getValue().getClass(HashMap<String, Object>);
-                }else{
+                        String name = (String) messageSnapshot.getKey().toString();
+                        String message = (String) messageSnapshot.getValue().toString();
+                        map.put(name, message);
 
+                    }
+                    editTextName.setText(map.get("name"));
+                    editTextEmail.setText(map.get("email"));
+                    editTextPhone.setText(map.get("phone"));
+                    //editTextBuisness.setText(map.get(""));
                 }
             }
         });
-//        if (task.isSuccessful()){
-//            FirebaseUser user =mAuth.getCurrentUser();
-//            String email = user.getEmail();
-//            String user_id =user.getUid();
-//            String name = editTextName.getText().toString();
-//            String phone = editTextPhone.getText().toString();
-//            HashMap<Object,String> hashMap = new HashMap<>();
-//            hashMap.put("email",email);
-//            hashMap.put("user_id",user_id);
-//            hashMap.put("name",name);
-//            hashMap.put("phone",phone);
-//            FirebaseDatabase database = FirebaseDatabase.getInstance();
-//            DatabaseReference databaseReference = database.getReference("Users");
-//            databaseReference.child(user_id).setValue(hashMap);
-//        }
-//        Intent intent = new Intent(Register.this, login.class);
-//        startActivity(intent);
     }
 }
