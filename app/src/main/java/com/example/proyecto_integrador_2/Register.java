@@ -109,7 +109,6 @@ public class Register extends AppCompatActivity {
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference databaseReference = database.getReference("Users");
                     databaseReference.child(user_id).setValue(hashMap);
-
                 }
                 Intent intent = new Intent(Register.this,login.class);
                 startActivity(intent);

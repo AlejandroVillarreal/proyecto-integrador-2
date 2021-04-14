@@ -37,11 +37,10 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         ActionBar toolbar = getSupportActionBar();
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
+        this.drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container_main);
-        navController = navHostFragment.getNavController();
-
-        navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
+        this.navController = navHostFragment.getNavController();
+        this.navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
                 if (destination.getId() == R.id.login_fragment

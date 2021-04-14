@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.proyecto_integrador_2.R;
 
-public class ContactsFragment extends Fragment {
+public class  ContactsFragment extends Fragment {
 
     private ContactsViewModel contactsViewModel;
 
