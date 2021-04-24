@@ -10,7 +10,7 @@ public class UserEntity {
     public int id;
 
     @ColumnInfo(name = "FIREBASE_ID")
-    public String firebaseId;
+    public String user_id;
     @ColumnInfo(name = "EMAIL")
     public String email;
     @ColumnInfo(name = "NAME")

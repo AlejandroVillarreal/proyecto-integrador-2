@@ -15,7 +15,7 @@ public class UserMapper {
 
     public UserEntity map(HashMap<String, String> values) {
         UserEntity user = new UserEntity();
-        user.firebaseId = values.get("user_id");
+        user.user_id = values.get("user_id");
         user.name = values.get("name");
         user.email = values.get("email");
         user.phone = values.get("phone");

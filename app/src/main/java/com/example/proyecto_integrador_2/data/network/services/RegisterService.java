@@ -37,13 +37,13 @@ public class RegisterService {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    userEntity.firebaseId = mAuth.getCurrentUser().getUid();
+                    userEntity.user_id = mAuth.getCurrentUser().getUid();
                     HashMap<Object, String> hashMap = new HashMap<>();
                     hashMap.put("email", userEntity.email);
-                    hashMap.put("user_id", userEntity.firebaseId);
+                    hashMap.put("user_id", userEntity.user_id);
                     hashMap.put("name", userEntity.name);
                     hashMap.put("phone", userEntity.phone);
-                    database.child(FirebaseTables.USERS.name).child(userEntity.firebaseId).setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    database.child(FirebaseTables.USERS.name).child(userEntity.user_id).setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
