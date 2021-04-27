@@ -101,7 +101,7 @@ public class ProfileDetailFragment extends Fragment implements ProfileInterface 
         Log.d(TAG, "WhatsappClicked: working");
         PackageManager packageManager = context.getPackageManager();
         Intent i = new Intent(Intent.ACTION_VIEW);
-        String message = "Hola soy " + currentUserName + " quisiera contratar un servicio con usted.";
+        String message = "Hola soy " + currentUserName + " deseo cotizar uno de sus servicios.";
         try {
             String url = "https://api.whatsapp.com/send?phone=" + "52" + phone + "&text=" + URLEncoder.encode(message, "UTF-8");
             i.setPackage("com.whatsapp");
