@@ -69,8 +69,7 @@ public class HomeFragment extends Fragment implements ProfileInterface {
     public void profileClicked(UserEntity userEntity) {
         Log.d(TAG, "profileClicked: working");
         String user_id = userEntity.user_id;
-        navController.navigate(HomeFragmentDirections.actionNavHomeToProfileDetailFragment2(user_id));
-
+        navController.navigate(HomeFragmentDirections.actionNavHomeToNavProfile(user_id));
     }
 
     @Override

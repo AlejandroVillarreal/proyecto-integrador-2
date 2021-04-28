@@ -54,7 +54,7 @@ public class ProfileDetailFragment extends Fragment implements ProfileInterface 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        user_id = ProfileDetailFragmentArgs.fromBundle(getArguments()).getUserId();
+        user_id = "";//ProfileDetailFragmentArgs.fromBundle(getArguments()).getUserId();
         this.updateUser();
     }
 
@@ -64,7 +64,7 @@ public class ProfileDetailFragment extends Fragment implements ProfileInterface 
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_profile_detail, container, false);
         context = getContext();
-        profile_pic = root.findViewById(R.id.img1);
+        profile_pic = root.findViewById(R.id.imgProfile);
         wpp_logo = root.findViewById(R.id.wpp_logo);
         profile_name = root.findViewById(R.id.nombre_tecnico);
         wpp_logo.setOnClickListener(this::wppLogoClicked);

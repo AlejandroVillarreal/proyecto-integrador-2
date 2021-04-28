@@ -7,14 +7,12 @@
     tools:context=".ui.profile.ProfileFragment">
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/imageProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="100dp"
-        android:layout_marginRight="100dp"
         android:layout_weight="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +34,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+        app:layout_constraintTop_toBottomOf="@+id/imageProfile" />
 
     <EditText
         android:id="@+id/editTextBuisness"
@@ -49,6 +47,7 @@
         android:layout_marginRight="20dp"
         android:ems="10"
         android:hint="Empresa"
+        android:text="FIME"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -77,13 +76,193 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:ems="10"
-        android:hint="Telefono
-"
+        android:hint="Telefono"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
+
+    <EditText
+        android:id="@+id/editTextService"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:ems="10"
+        android:hint="Servicio"
+        android:text="Electricista, Mecánico"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
+
+    <ImageView
+        android:id="@+id/estrella1"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/estrella_gris"
+        app:layout_constraintEnd_toStartOf="@+id/estrella2"
+        app:layout_constraintTop_toTopOf="@+id/estrella2" />
+
+    <ImageView
+        android:id="@+id/estrella2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/estrella_gris"
+        app:layout_constraintEnd_toStartOf="@+id/estrella3"
+        app:layout_constraintTop_toTopOf="@+id/estrella3" />
+
+    <ImageView
+        android:id="@+id/estrella3"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="100dp"
+        android:src="@drawable/estrella_gris"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/estrella4"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/estrella_gris"
+        app:layout_constraintStart_toEndOf="@+id/estrella3"
+        app:layout_constraintTop_toTopOf="@+id/estrella3" />
+
+    <ImageView
+        android:id="@+id/estrella5"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/estrella_gris"
+        app:layout_constraintStart_toEndOf="@+id/estrella4"
+        app:layout_constraintTop_toTopOf="@+id/estrella4" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="41dp"
+        android:src="@drawable/whatsapp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView3"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="150dp"
+        android:text="Solicitar servicio"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextService" />
+
+    <Button
+        android:id="@+id/btnCalif"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="150dp"
+        android:text="Calificar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <View
+        android:id="@+id/viewModal"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="100dp"
+        android:background="#DEDEDE"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewCalif"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginBottom="50dp"
+        android:text="Califica mi servicio"
+        android:textSize="16sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/viewModal"
+        app:layout_constraintEnd_toEndOf="@+id/viewModal"
+        app:layout_constraintStart_toStartOf="@+id/viewModal"
+        app:layout_constraintTop_toTopOf="@+id/viewModal" />
+
+    <ImageView
+        android:id="@+id/estrella6"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/estrella_gris"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/estrella7"
+        app:layout_constraintTop_toTopOf="@+id/estrella7" />
+
+    <ImageView
+        android:id="@+id/estrella7"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/estrella_gris"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/estrella8"
+        app:layout_constraintTop_toTopOf="@+id/estrella8" />
+
+    <ImageView
+        android:id="@+id/estrella8"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="100dp"
+        android:src="@drawable/estrella_gris"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.561"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCalif" />
+
+    <ImageView
+        android:id="@+id/estrella9"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/estrella_gris"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@+id/estrella8"
+        app:layout_constraintTop_toTopOf="@+id/estrella8" />
+
+    <ImageView
+        android:id="@+id/estrella10"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/estrella_gris"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@+id/estrella9"
+        app:layout_constraintTop_toTopOf="@+id/estrella9" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
