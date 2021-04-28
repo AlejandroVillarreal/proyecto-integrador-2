@@ -153,13 +153,13 @@ public class ProfileFragment extends Fragment {
         if (calif != null){
             arrayCalif.add(Long.valueOf(calif));
         }
-        Long total = 0.0;
+        Double total = 0.0;
         for (int i = 0; i < arrayCalif.size(); i ++){
             Long value = arrayCalif.get(i);
             total = total + value;
         }
-        Long prom = total / arrayCalif.size();
-        Long aux = Math.ceil(prom);
+        Double prom = total / arrayCalif.size();
+        double aux = Math.round(prom);
         //star1
         Drawable yellow = getResources().getDrawable(R.drawable.estrella_amarilla);
         Drawable gray = getResources().getDrawable(R.drawable.estrella_gris);
