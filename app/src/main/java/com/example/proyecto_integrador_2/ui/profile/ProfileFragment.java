@@ -130,6 +130,13 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        if (this.user_id == null){
+            TextView req = root.findViewById(R.id.textViewRequestService);
+            ImageView whats = root.findViewById(R.id.imageViewWhatsApp);
+            req.setVisibility(View.INVISIBLE);
+            whats.setVisibility(View.INVISIBLE);
+            btnCalif.setVisibility(View.INVISIBLE);
+        }
 
         this.updateUser();
         return root;

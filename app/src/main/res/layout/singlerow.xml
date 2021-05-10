@@ -127,7 +127,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textViewRequestService"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -149,8 +149,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintStart_toStartOf="@+id/textViewRequestService"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRequestService"
         app:srcCompat="@drawable/estrella_gris"/>
 
     <ImageView
@@ -162,7 +162,7 @@
         android:layout_marginBottom="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imgStart1"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRequestService"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/estrella_gris" />
 
@@ -175,7 +175,7 @@
         android:layout_marginBottom="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imgStart2"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRequestService"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/estrella_gris" />
 
@@ -188,7 +188,7 @@
         android:layout_marginBottom="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imgStart3"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRequestService"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/estrella_gris" />
 
@@ -201,7 +201,7 @@
         android:layout_marginBottom="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imgStart4"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRequestService"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/estrella_gris" />
 
