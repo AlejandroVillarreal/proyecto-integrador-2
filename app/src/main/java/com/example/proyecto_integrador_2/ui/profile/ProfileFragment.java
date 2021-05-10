@@ -64,7 +64,9 @@ public class ProfileFragment extends Fragment {
         isGrading = false;
         profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
-        user_id = ProfileFragmentArgs.fromBundle(getArguments()).getUserId().toString();
+        if (getArguments().get("user_id") != null){
+            user_id = ProfileFragmentArgs.fromBundle(getArguments()).getUserId().toString();
+        }
         editTextName = (EditText) root.findViewById(R.id.editTextName);
         editTextEmail = (EditText) root.findViewById(R.id.editTextEmail);
         editTextPhone = (EditText) root.findViewById(R.id.editTextPhone);
@@ -135,7 +137,7 @@ public class ProfileFragment extends Fragment {
 
     public void updateUser(){
         String uid = "";
-        if(this.user_id.length() > 0){
+        if(this.user_id != null && this.user_id.length() > 0){
             uid = this.user_id;
         }else{
             mAuth = FirebaseAuth.getInstance();
