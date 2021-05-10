@@ -91,6 +91,8 @@ public class ProfileFragment extends Fragment {
         estrella8.setClickable(true);
         estrella9.setClickable(true);
         estrella10.setClickable(true);
+        ImageView whats = root.findViewById(R.id.imageViewWhatsApp);
+        whats.setClickable(true);
 
         Button btnCalif = (Button) root.findViewById(R.id.btnCalif);
         btnCalif.setOnClickListener(new View.OnClickListener() {
@@ -130,9 +132,16 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        whats.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 wppLogoClicked();
+             }
+         });
+
         if (this.user_id == null){
             TextView req = root.findViewById(R.id.textViewRequestService);
-            ImageView whats = root.findViewById(R.id.imageViewWhatsApp);
+
             req.setVisibility(View.INVISIBLE);
             whats.setVisibility(View.INVISIBLE);
             btnCalif.setVisibility(View.INVISIBLE);
@@ -249,7 +258,44 @@ public class ProfileFragment extends Fragment {
             this.userData.put("calif", this.califications);
             ref.child(this.user_id).setValue(this.userData);
         }
+    }
 
+    void wppLogoClicked() {
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference("Users");
+        ref.child(user.getUid()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (task.isSuccessful()){
+                    Map<String,Object> map = new HashMap<>();
+                    for (DataSnapshot messageSnapshot: task.getResult().getChildren()) {
+                        String name = (String) messageSnapshot.getKey().toString();
+                        Object message = messageSnapshot.getValue();
+                        map.put(name, message);
+                    }
+                    String name = map.get("name").toString();
+                    String phone = map.get("phone").toString();
+
+                    if (name != null && name.length() > 0 && phone != null && phone.length() > 0){
+                        PackageManager packageManager = getContext().getPackageManager();
+                        Intent i = new Intent(Intent.ACTION_VIEW);
+                        String message = "Hola soy " + name + ", vi su anuncio en Service Finder, deseo cotizar uno de sus servicios.";
+                        try {
+                            String url = "https://api.whatsapp.com/send?phone=" + "52" + phone + "&text=" + URLEncoder.encode(message, "UTF-8");
+                            i.setPackage("com.whatsapp");
+                            i.setData(Uri.parse(url));
+                            if (i.resolveActivity(packageManager) != null) {
+                                getContext().startActivity(i);
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        });
     }
 
 }

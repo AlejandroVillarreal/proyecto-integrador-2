@@ -15,7 +15,7 @@
             "notNull": true
           },
           {
-            "fieldPath": "firebaseId",
+            "fieldPath": "user_id",
             "columnName": "FIREBASE_ID",
             "affinity": "TEXT",
             "notNull": false
