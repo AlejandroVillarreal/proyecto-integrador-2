@@ -4,8 +4,6 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.util.ArrayList;
-
 @Entity(tableName = "USER_ENTITY")
 public class UserEntity {
     @PrimaryKey(autoGenerate = true)
@@ -21,8 +19,4 @@ public class UserEntity {
     public String phone;
     @ColumnInfo(name = "PICTURE")
     public String profile_pic;
-    @ColumnInfo(name = "CALIF")
-    public ArrayList<Integer> calif;
-    @ColumnInfo(name = "PROM" )
-    public Double prom;
 }
