@@ -1,5 +1,8 @@
 package com.example.proyecto_integrador_2.ui.profile;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
@@ -17,24 +20,33 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.example.proyecto_integrador_2.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.net.URLEncoder;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import kotlin.jvm.internal.CollectionToArray;
 
@@ -58,6 +70,14 @@ public class ProfileFragment extends Fragment {
     private ArrayList califications;
     private Boolean isGrading;
     private Map<String,Object> userData;
+    // IMAGE UPLOAD
+    private Uri imageUri;
+    final String randomKey = UUID.randomUUID().toString();
+    private FirebaseStorage storage;
+    private StorageReference storageReference;
+    private String imageDownloadURL;
+    private DatabaseReference databaseReference;
+    private Context context;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -145,9 +165,15 @@ public class ProfileFragment extends Fragment {
             req.setVisibility(View.INVISIBLE);
             whats.setVisibility(View.INVISIBLE);
             btnCalif.setVisibility(View.INVISIBLE);
+            imageProfile.setOnClickListener(this::uploadImage);
         }
 
         this.updateUser();
+        // IMAGE UPLOAD
+
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
         return root;
     }
 
@@ -294,6 +320,89 @@ public class ProfileFragment extends Fragment {
                         }
                     }
                 }
+            }
+        });
+    }
+
+
+    //IMAGE UPLOAD
+    public void uploadImage(View v) {
+        choosePicture();
+    }
+
+    public void choosePicture() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == Activity.RESULT_OK && data.getData() != null) {
+            imageUri = data.getData();
+            Log.d("UploadImage", "test");
+            uploadPicture();
+        }
+    }
+
+    public void uploadPicture() {
+        String uid = "";
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        uid = user.getUid();
+        final ProgressDialog progressDialog = new ProgressDialog(getContext());
+        progressDialog.setTitle("Cargando imagen...");
+        progressDialog.show();
+        //final String randomKey = UUID.randomUUID().toString();
+        UploadTask uploadTask;
+        //Uri file = Uri.fromFile(new File("path/to/images/rivers.jpg"));
+        StorageReference riversRef = storageReference.child("profile_pictures/" + randomKey);
+        uploadTask = riversRef.putFile(imageUri);
+
+// Register observers to listen for when the download is done or if it fails
+        String finalUid = uid;
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle unsuccessful uploads
+                progressDialog.dismiss();
+                Snackbar.make(getActivity().findViewById(android.R.id.content), "No se pudo cargar la imagen", Snackbar.LENGTH_LONG).show();
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+                // ...
+                progressDialog.dismiss();
+                Snackbar.make(getActivity().findViewById(android.R.id.content), "Imagen Cargada", Snackbar.LENGTH_LONG).show();
+                storageReference.child("profile_pictures/"+randomKey).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        imageDownloadURL = uri.toString();
+                        Log.d(TAG,imageDownloadURL);
+                        Log.d(TAG, finalUid);
+                        databaseReference.child("Users").child(finalUid).child("profile_pic").setValue(imageDownloadURL).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Log.d(TAG,"SUCCESSFUL");
+                                    //Toast.makeText(context, "Imagen Actualizada", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Log.d(TAG,"FAILED");
+                                    //Toast.makeText(context, "Error al subir imagen", Toast.LENGTH_SHORT).show();
+                                }
+                                }
+                            });
+                    }
+                });
+            }
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                double progressPercent = (100.00 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
+                progressDialog.setMessage("Cargando: " + (int) progressPercent + "%");
             }
         });
     }
