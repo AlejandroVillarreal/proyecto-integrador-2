@@ -10,11 +10,13 @@
         android:id="@+id/imageProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="80dp"
-        android:layout_marginEnd="100dp"
+        android:layout_marginEnd="5dp"
         android:layout_weight="1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/edit_image"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/soporte_tecnico_small" />
@@ -24,10 +26,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
         android:ems="10"
         android:hint="@string/nombre_completo"
         android:inputType="textPersonName"
@@ -41,14 +41,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
         android:ems="10"
         android:hint="Empresa"
-        android:text="FIME"
         android:inputType="textPersonName"
+        android:text="FIME"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextName" />
@@ -92,8 +90,8 @@
         android:layout_marginEnd="20dp"
         android:ems="10"
         android:hint="Servicio"
-        android:text="Electricista, Mecánico"
         android:inputType="textPersonName"
+        android:text="Electricista, Mecánico"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
@@ -140,11 +138,14 @@
     <ImageView
         android:id="@+id/estrella5"
         android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_height="0dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="129dp"
         android:src="@drawable/estrella_gris"
+        app:layout_constraintBottom_toTopOf="@+id/edit_image"
         app:layout_constraintStart_toEndOf="@+id/estrella4"
-        app:layout_constraintTop_toTopOf="@+id/estrella4" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageViewWhatsApp"
@@ -268,10 +269,21 @@
         android:id="@+id/lblCalif"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:text="0.0"
         android:maxLines="1"
+        android:text="0.0"
         app:layout_constraintBottom_toBottomOf="@+id/estrella3"
         app:layout_constraintStart_toEndOf="@+id/estrella5" />
+
+    <ImageView
+        android:id="@+id/edit_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="523dp"
+        android:src="@drawable/outline_edit_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageProfile"
+        app:layout_constraintTop_toBottomOf="@+id/estrella5" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,4 +19,6 @@ public class UserEntity {
     public String phone;
     @ColumnInfo(name = "PICTURE")
     public String profile_pic;
+    @ColumnInfo(name = "SERVICE_AREA")
+    public String area_of_service;
 }

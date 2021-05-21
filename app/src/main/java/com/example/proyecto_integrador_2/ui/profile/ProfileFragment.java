@@ -17,7 +17,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -48,8 +47,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import kotlin.jvm.internal.CollectionToArray;
-
 public class ProfileFragment extends Fragment {
     private static final String TAG = "ProfileDetailFragment";
     private FirebaseAuth mAuth;
@@ -57,9 +54,11 @@ public class ProfileFragment extends Fragment {
     private EditText editTextName;
     private EditText editTextEmail;
     private EditText editTextPhone;
-    private EditText editTextBuisness;
+    private EditText editTextArea_of_service;
+    private EditText editTextServices;
     private TextView lblCalif;
     private ImageView imageProfile;
+    private ImageView imageEditIcon;
     private ImageView star1, star2, star3, star4, star5;
     //MODAL
     private View modalView;
@@ -84,14 +83,16 @@ public class ProfileFragment extends Fragment {
         isGrading = false;
         profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
-        if (getArguments().get("user_id") != null){
+        if (getArguments().get("user_id") != null) {
             user_id = ProfileFragmentArgs.fromBundle(getArguments()).getUserId().toString();
         }
         editTextName = (EditText) root.findViewById(R.id.editTextName);
         editTextEmail = (EditText) root.findViewById(R.id.editTextEmail);
         editTextPhone = (EditText) root.findViewById(R.id.editTextPhone);
-        editTextBuisness = (EditText) root.findViewById(R.id.editTextBuisness);
+        editTextArea_of_service = (EditText) root.findViewById(R.id.editTextBuisness);
+        editTextServices = (EditText) root.findViewById(R.id.editTextService);
         imageProfile = (ImageView) root.findViewById(R.id.imageProfile);
+        imageEditIcon = (ImageView) root.findViewById(R.id.edit_image);
         star1 = (ImageView) root.findViewById(R.id.estrella1);
         star2 = (ImageView) root.findViewById(R.id.estrella2);
         star3 = (ImageView) root.findViewById(R.id.estrella3);
@@ -113,7 +114,7 @@ public class ProfileFragment extends Fragment {
         estrella10.setClickable(true);
         ImageView whats = root.findViewById(R.id.imageViewWhatsApp);
         whats.setClickable(true);
-
+        imageEditIcon.setVisibility(View.INVISIBLE);
         Button btnCalif = (Button) root.findViewById(R.id.btnCalif);
         btnCalif.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,13 +160,15 @@ public class ProfileFragment extends Fragment {
              }
          });
 
-        if (this.user_id == null){
+        if (this.user_id == null) {
             TextView req = root.findViewById(R.id.textViewRequestService);
 
             req.setVisibility(View.INVISIBLE);
             whats.setVisibility(View.INVISIBLE);
             btnCalif.setVisibility(View.INVISIBLE);
             imageProfile.setOnClickListener(this::uploadImage);
+            imageEditIcon.setVisibility(View.VISIBLE);
+
         }
 
         this.updateUser();
@@ -192,8 +195,8 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (task.isSuccessful()){
-                    Map<String,Object> map = new HashMap<>();
-                    for (DataSnapshot messageSnapshot: task.getResult().getChildren()) {
+                    Map<String, Object> map = new HashMap<>();
+                    for (DataSnapshot messageSnapshot : task.getResult().getChildren()) {
                         String name = (String) messageSnapshot.getKey().toString();
                         Object message = messageSnapshot.getValue();
                         map.put(name, message);
@@ -202,13 +205,21 @@ public class ProfileFragment extends Fragment {
                     editTextName.setText(map.get("name").toString());
                     editTextEmail.setText(map.get("email").toString());
                     editTextPhone.setText(map.get("phone").toString());
+                    if (map.get("area_of_service") == null && map.get("services") == null) {
+                        editTextArea_of_service.setText("");
+                        editTextServices.setText("");
+                    } else {
+                        editTextArea_of_service.setText(map.get("area_of_service").toString());
+                        editTextServices.setText(map.get("services").toString());
+                    }
+
                     Glide.with(getContext()).load(map.get("profile_pic").toString()).into(imageProfile);
                     Object aux = map.get("calif");
-                    if (aux instanceof ArrayList){
+                    if (aux instanceof ArrayList) {
                         ArrayList<Long> array = (ArrayList<Long>) aux;
                         califications = array;
                         calculateCalif(null);
-                    }else{
+                    } else {
                         califications = new ArrayList<Integer>();
                     }
                 }

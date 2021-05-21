@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "cd943354931069b4a08b3a6351519b00",
+    "identityHash": "a6b934cafc77896609c601322f9eb653",
     "entities": [
       {
         "tableName": "USER_ENTITY",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `FIREBASE_ID` TEXT, `EMAIL` TEXT, `NAME` TEXT, `PHONE` TEXT, `PICTURE` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `FIREBASE_ID` TEXT, `EMAIL` TEXT, `NAME` TEXT, `PHONE` TEXT, `PICTURE` TEXT, `SERVICE_AREA` TEXT)",
         "fields": [
           {
             "fieldPath": "id",
@@ -43,6 +43,12 @@
             "columnName": "PICTURE",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "service_area",
+            "columnName": "SERVICE_AREA",
+            "affinity": "TEXT",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -58,7 +64,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'cd943354931069b4a08b3a6351519b00')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a6b934cafc77896609c601322f9eb653')"
     ]
   }
 }

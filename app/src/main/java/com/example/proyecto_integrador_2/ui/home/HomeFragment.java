@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -19,7 +20,9 @@ import com.example.proyecto_integrador_2.R;
 import com.example.proyecto_integrador_2.data.database.entities.UserEntity;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 public class HomeFragment extends Fragment implements ProfileInterface {
 
@@ -32,6 +35,9 @@ public class HomeFragment extends Fragment implements ProfileInterface {
     private RecyclerView home_recycler_view;
     private myAdapter adapter;
     private NavController navController;
+    private SearchView searchView;
+    private DatabaseReference databaseReference;
+    private Query firebaseQuery;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
@@ -40,27 +46,65 @@ public class HomeFragment extends Fragment implements ProfileInterface {
         navController = NavHostFragment.findNavController(this);
         home_recycler_view = root.findViewById(R.id.home_recycler_view);
         home_recycler_view.setLayoutManager(new LinearLayoutManager(root.getContext()));
-
+        searchView = root.findViewById(R.id.home_search_view);
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
+        //firebaseQuery = FirebaseDatabase.getInstance().getReference().child("Users").child("name").equalTo(searchText);
+/*
         FirebaseRecyclerOptions<UserEntity> options =
                 new FirebaseRecyclerOptions.Builder<UserEntity>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Users"), UserEntity.class)
+                        .setQuery(firebaseQuery, UserEntity.class)
                         .build();
+
         adapter = new myAdapter(options, this);
-        home_recycler_view.setAdapter(adapter);
+        home_recycler_view.setAdapter(adapter);*/
+
+
         return root;
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        adapter.startListening();
+        Log.d(TAG, "onStartListening");
+        //adapter.startListening();
+        if (databaseReference != null) {
+            Log.d(TAG, "Showing unfiltered data");
+            firebaseQuery = FirebaseDatabase.getInstance().getReference().child("Users");
+            //firebaseQuery = FirebaseDatabase.getInstance().getReference().child("Users").orderByChild("name").equalTo("Alejandro Villarreal");
+            FirebaseRecyclerOptions<UserEntity> options =
+                    new FirebaseRecyclerOptions.Builder<UserEntity>()
+                            .setQuery(firebaseQuery, UserEntity.class)
+                            .build();
+
+            adapter = new myAdapter(options, this);
+            home_recycler_view.setAdapter(adapter);
+            adapter.startListening();
+        }
+        if (searchView != null) {
+            Log.d(TAG, "Showing query results");
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    return false;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    firebaseSearch(newText);
+                    return true;
+                }
+            });
+        }
+
 
     }
 
     @Override
     public void onStop() {
         super.onStop();
+
         adapter.stopListening();
+        Log.d(TAG, "onStopListening");
 
     }
 
@@ -76,4 +120,34 @@ public class HomeFragment extends Fragment implements ProfileInterface {
     public void sendMessage(UserEntity userEntity) {
 
     }
+
+    private void firebaseSearch(String searchText) {
+        Log.d(TAG, searchText);
+        Query firebaseSearchQuery = FirebaseDatabase.getInstance().getReference().child("Users").orderByChild("area_of_service").equalTo(searchText);
+        FirebaseRecyclerOptions<UserEntity> options =
+                new FirebaseRecyclerOptions.Builder<UserEntity>()
+                        .setQuery(firebaseSearchQuery, UserEntity.class)
+                        .build();
+        adapter = new myAdapter(options, this);
+        home_recycler_view.setAdapter(adapter);
+        adapter.startListening();
+        Log.d(TAG, "Showing filtered data");
+    }
+
+    private void searchViewQueryListener() {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                //firebaseSearch(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                firebaseSearch(newText);
+                return false;
+            }
+        });
+    }
+
 }

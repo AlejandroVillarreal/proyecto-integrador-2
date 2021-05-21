@@ -20,6 +20,7 @@ public class UserMapper {
         user.email = values.get("email");
         user.phone = values.get("phone");
         user.profile_pic = values.get("profile_pic");
+        user.area_of_service = values.get("area_of_service");
         return user;
     }
 }

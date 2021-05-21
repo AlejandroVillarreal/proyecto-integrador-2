@@ -4,7 +4,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,8 +14,6 @@ import com.example.proyecto_integrador_2.R;
 import com.example.proyecto_integrador_2.data.database.entities.UserEntity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class myAdapter extends FirebaseRecyclerAdapter<UserEntity, myAdapter.myViewholder> {
 
@@ -41,6 +38,7 @@ public class myAdapter extends FirebaseRecyclerAdapter<UserEntity, myAdapter.myV
         myViewholder.name.setText(userEntity.name);
         myViewholder.email.setText(userEntity.email);
         myViewholder.phone.setText(userEntity.phone);
+        myViewholder.area_of_service.setText(userEntity.area_of_service);
         Glide.with(myViewholder.image.getContext()).load(userEntity.profile_pic).into(myViewholder.image);
 
         myViewholder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -55,7 +53,7 @@ public class myAdapter extends FirebaseRecyclerAdapter<UserEntity, myAdapter.myV
     class myViewholder extends RecyclerView.ViewHolder {
 
         ImageView image;
-        TextView name, email, phone;
+        TextView name, email, phone, area_of_service;
 
         public myViewholder(@NonNull View itemView) {
             super(itemView);
@@ -63,6 +61,10 @@ public class myAdapter extends FirebaseRecyclerAdapter<UserEntity, myAdapter.myV
             name = itemView.findViewById(R.id.textViewName);
             email = itemView.findViewById(R.id.textViewEmail);
             phone = itemView.findViewById(R.id.textViewPhone);
+            area_of_service = itemView.findViewById(R.id.textViewServiceArea);
         }
     }
+
+
+
 }
