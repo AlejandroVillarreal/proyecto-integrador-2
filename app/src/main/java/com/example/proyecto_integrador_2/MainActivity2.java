@@ -2,6 +2,7 @@ package com.example.proyecto_integrador_2;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -34,6 +35,7 @@ public class MainActivity2 extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         ActionBar toolbar = getSupportActionBar();
@@ -54,10 +56,11 @@ public class MainActivity2 extends AppCompatActivity {
             }
         });
 
-        appBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_home, R.id.nav_profile, R.id.nav_contacts)
+        appBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_home, R.id.nav_profile, R.id.nav_contacts, R.id.logout)
                 .setOpenableLayout(drawerLayout).build();
         setupActionBar(navController, appBarConfiguration);
         setupNavigationMenu(navController);
+
 
     }
 
@@ -68,6 +71,15 @@ public class MainActivity2 extends AppCompatActivity {
     private void setupNavigationMenu(NavController navController) {
         NavigationView navView = findViewById(R.id.nav_view);
         NavigationUI.setupWithNavController(navView, navController);
+        navView.getMenu().findItem(R.id.nav_contacts).setVisible(false);
+        navView.getMenu().findItem(R.id.logout).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                logout();
+                navController.navigate(R.id.login_fragment);
+                return false;
+            }
+        });
     }
 
     @Override
@@ -82,4 +94,10 @@ public class MainActivity2 extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+    public void logout() {
+        mAuth = FirebaseAuth.getInstance();
+        mAuth.signOut();
+    }
+
 }

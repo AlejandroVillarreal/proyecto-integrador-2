@@ -126,6 +126,12 @@ public class ProfileFragment extends Fragment {
         btnUpdate.setVisibility(View.INVISIBLE);
         chipAreas = root.findViewById(R.id.chipGroup);
         chipAreas.setVisibility(View.INVISIBLE);
+
+        editTextName.setFocusable(false);
+        editTextServices.setFocusable(false);
+        editTextArea_of_service.setFocusable(false);
+        editTextEmail.setFocusable(false);
+        editTextPhone.setFocusable(false);
         btnCalif.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -179,6 +185,9 @@ public class ProfileFragment extends Fragment {
             imageProfile.setOnClickListener(this::uploadImage);
             imageEditIcon.setVisibility(View.VISIBLE);
             btnUpdate.setVisibility(View.VISIBLE);
+            editTextName.setFocusableInTouchMode(true);
+            editTextEmail.setFocusableInTouchMode(true);
+            editTextPhone.setFocusableInTouchMode(true);
             editTextArea_of_service.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
