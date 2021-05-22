@@ -1,8 +1,10 @@
 package com.example.proyecto_integrador_2.ui.profile;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
@@ -17,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,6 +32,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -60,6 +64,8 @@ public class ProfileFragment extends Fragment {
     private ImageView imageProfile;
     private ImageView imageEditIcon;
     private ImageView star1, star2, star3, star4, star5;
+    private Button btnUpdate;
+    private ChipGroup chipAreas;
     //MODAL
     private View modalView;
     private TextView textCalif;
@@ -68,7 +74,7 @@ public class ProfileFragment extends Fragment {
     private String user_id;
     private ArrayList califications;
     private Boolean isGrading;
-    private Map<String,Object> userData;
+    private Map<String, Object> userData;
     // IMAGE UPLOAD
     private Uri imageUri;
     final String randomKey = UUID.randomUUID().toString();
@@ -116,6 +122,10 @@ public class ProfileFragment extends Fragment {
         whats.setClickable(true);
         imageEditIcon.setVisibility(View.INVISIBLE);
         Button btnCalif = (Button) root.findViewById(R.id.btnCalif);
+        btnUpdate = (Button) root.findViewById(R.id.btnUpdate);
+        btnUpdate.setVisibility(View.INVISIBLE);
+        chipAreas = root.findViewById(R.id.chipGroup);
+        chipAreas.setVisibility(View.INVISIBLE);
         btnCalif.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -168,7 +178,25 @@ public class ProfileFragment extends Fragment {
             btnCalif.setVisibility(View.INVISIBLE);
             imageProfile.setOnClickListener(this::uploadImage);
             imageEditIcon.setVisibility(View.VISIBLE);
-
+            btnUpdate.setVisibility(View.VISIBLE);
+            editTextArea_of_service.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showAlertAreas();
+                }
+            });
+            editTextServices.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showAlertServicios();
+                }
+            });
+            btnUpdate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    updateProfile();
+                }
+            });
         }
 
         this.updateUser();
@@ -416,6 +444,161 @@ public class ProfileFragment extends Fragment {
                 progressDialog.setMessage("Cargando: " + (int) progressPercent + "%");
             }
         });
+    }
+
+    public void updateProfile() {
+        String uid = "";
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        uid = user.getUid();
+
+        String nameInput, phoneInput, service_areaInput, serviceInput;
+        nameInput = editTextName.getText().toString().trim();
+        phoneInput = editTextPhone.getText().toString().trim();
+        service_areaInput = editTextArea_of_service.getText().toString().trim();
+        serviceInput = editTextServices.getText().toString().trim();
+
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("area_of_service", service_areaInput);
+        hashMap.put("service", serviceInput);
+        hashMap.put("name", nameInput);
+        hashMap.put("phone", phoneInput);
+        databaseReference.child("Users").child(uid).child("name").setValue(nameInput);
+
+        databaseReference.child("Users").child(uid).child("phone").setValue(phoneInput);
+
+        databaseReference.child("Users").child(uid).child("area_of_service").setValue(service_areaInput);
+
+        databaseReference.child("Users").child(uid).child("services").setValue(serviceInput).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(getActivity(), "Perfil Actualizado", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getActivity(), "Error al Actualizar Perfil", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+
+    }
+
+    private void showAlertAreas() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+        alertDialog.setTitle("Selecciona tu Municipio");
+        String[] items = {"Monterrey", "San Nicolás", "General Escobedo", "San Pedro", "Guadalupe", "Juárez", "Apodaca", "Santiago", "Santa Catarina", "García"};
+        int checkedItem = 1;
+        alertDialog.setSingleChoiceItems(items, checkedItem, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case 0:
+                        Toast.makeText(getActivity(), "Monterrey", Toast.LENGTH_LONG).show();
+                        editTextArea_of_service.setText(items[0]);
+                        break;
+                    case 1:
+                        Toast.makeText(getActivity(), "San Nicolás", Toast.LENGTH_LONG).show();
+                        editTextArea_of_service.setText(items[1]);
+                        break;
+                    case 2:
+                        Toast.makeText(getActivity(), "General Escobedo", Toast.LENGTH_LONG).show();
+                        editTextArea_of_service.setText(items[2]);
+                        break;
+                    case 3:
+                        Toast.makeText(getActivity(), "San Pedro", Toast.LENGTH_LONG).show();
+                        editTextArea_of_service.setText(items[3]);
+                        break;
+                    case 4:
+                        Toast.makeText(getActivity(), "Guadalupe", Toast.LENGTH_LONG).show();
+                        editTextArea_of_service.setText(items[4]);
+                        break;
+                    case 5:
+                        Toast.makeText(getActivity(), "Juárez", Toast.LENGTH_LONG).show();
+                        editTextArea_of_service.setText(items[5]);
+                        break;
+                    case 6:
+                        Toast.makeText(getActivity(), "Apodaca", Toast.LENGTH_LONG).show();
+                        editTextArea_of_service.setText(items[6]);
+                        break;
+                    case 7:
+                        Toast.makeText(getActivity(), "Santiago", Toast.LENGTH_LONG).show();
+                        editTextArea_of_service.setText(items[7]);
+                        break;
+                    case 8:
+                        Toast.makeText(getActivity(), "Clicked on java", Toast.LENGTH_LONG).show();
+                        editTextArea_of_service.setText(items[8]);
+                        break;
+                    case 9:
+                        Toast.makeText(getActivity(), "Santa Catarina", Toast.LENGTH_LONG).show();
+                        editTextArea_of_service.setText(items[9]);
+                        break;
+                    case 10:
+                        Toast.makeText(getActivity(), "García", Toast.LENGTH_LONG).show();
+                        editTextArea_of_service.setText(items[10]);
+                        break;
+                }
+            }
+        });
+        AlertDialog alert = alertDialog.create();
+        alert.setCanceledOnTouchOutside(false);
+        alert.show();
+    }
+
+    private void showAlertServicios() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+        alertDialog.setTitle("Selecciona tu Servicio");
+        String[] items = {"Electricista", "Plomería", "Mecánico", "Albañil", "Pintor", "Refrigeración", "Carpintero", "Fumigación", "Impermeabilización", "Limpieza"};
+        int checkedItem = 1;
+        alertDialog.setSingleChoiceItems(items, checkedItem, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case 0:
+                        Toast.makeText(getActivity(), "Electricista", Toast.LENGTH_LONG).show();
+                        editTextServices.setText(items[0]);
+                        break;
+                    case 1:
+                        Toast.makeText(getActivity(), "Plomería", Toast.LENGTH_LONG).show();
+                        editTextServices.setText(items[1]);
+                        break;
+                    case 2:
+                        Toast.makeText(getActivity(), "Mecánico", Toast.LENGTH_LONG).show();
+                        editTextServices.setText(items[2]);
+                        break;
+                    case 3:
+                        Toast.makeText(getActivity(), "Albañil", Toast.LENGTH_LONG).show();
+                        editTextServices.setText(items[3]);
+                        break;
+                    case 4:
+                        Toast.makeText(getActivity(), "Pintor", Toast.LENGTH_LONG).show();
+                        editTextServices.setText(items[4]);
+                        break;
+                    case 5:
+                        Toast.makeText(getActivity(), "Refrigeración", Toast.LENGTH_LONG).show();
+                        editTextServices.setText(items[5]);
+                        break;
+                    case 6:
+                        Toast.makeText(getActivity(), "Carpintero", Toast.LENGTH_LONG).show();
+                        editTextServices.setText(items[6]);
+                        break;
+                    case 7:
+                        Toast.makeText(getActivity(), "Fumigación", Toast.LENGTH_LONG).show();
+                        editTextServices.setText(items[7]);
+                        break;
+                    case 8:
+                        Toast.makeText(getActivity(), "Impermeabilización", Toast.LENGTH_LONG).show();
+                        editTextServices.setText(items[8]);
+                        break;
+                    case 9:
+                        Toast.makeText(getActivity(), "Limpieza", Toast.LENGTH_LONG).show();
+                        editTextServices.setText(items[9]);
+                        break;
+                }
+            }
+        });
+        AlertDialog alert = alertDialog.create();
+        alert.setCanceledOnTouchOutside(false);
+        alert.show();
     }
 
 }

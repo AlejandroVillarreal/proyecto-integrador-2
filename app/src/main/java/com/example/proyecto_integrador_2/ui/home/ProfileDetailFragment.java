@@ -20,6 +20,7 @@ import com.example.proyecto_integrador_2.R;
 import com.example.proyecto_integrador_2.data.database.entities.UserEntity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.chip.ChipGroup;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -44,6 +45,7 @@ public class ProfileDetailFragment extends Fragment implements ProfileInterface 
     private ProfileInterface profileInterface;
     private String phone;
     private String currentUserName;
+    private ChipGroup chipAreas;
 // ...
 
     public ProfileDetailFragment() {

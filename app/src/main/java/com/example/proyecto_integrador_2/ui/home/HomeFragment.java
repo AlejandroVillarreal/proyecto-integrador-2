@@ -47,6 +47,7 @@ public class HomeFragment extends Fragment implements ProfileInterface {
         home_recycler_view = root.findViewById(R.id.home_recycler_view);
         home_recycler_view.setLayoutManager(new LinearLayoutManager(root.getContext()));
         searchView = root.findViewById(R.id.home_search_view);
+
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
         //firebaseQuery = FirebaseDatabase.getInstance().getReference().child("Users").child("name").equalTo(searchText);
 /*
