@@ -45,7 +45,12 @@ public class HomeFragment extends Fragment implements ProfileInterface {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         navController = NavHostFragment.findNavController(this);
         home_recycler_view = root.findViewById(R.id.home_recycler_view);
-        home_recycler_view.setLayoutManager(new LinearLayoutManager(root.getContext()));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(root.getContext());
+        layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(true);
+        home_recycler_view.setLayoutManager(layoutManager);
+        //home_recycler_view.setLayoutManager(new LinearLayoutManager(root.getContext()));
+
         searchView = root.findViewById(R.id.home_search_view);
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
@@ -70,7 +75,7 @@ public class HomeFragment extends Fragment implements ProfileInterface {
         //adapter.startListening();
         if (databaseReference != null) {
             Log.d(TAG, "Showing unfiltered data");
-            firebaseQuery = FirebaseDatabase.getInstance().getReference().child("Users").orderByValue();
+            firebaseQuery = FirebaseDatabase.getInstance().getReference().child("Users").orderByChild("prom");
             //firebaseQuery = FirebaseDatabase.getInstance().getReference().child("Users").orderByChild("name").equalTo("Alejandro Villarreal");
             FirebaseRecyclerOptions<UserEntity> options =
                     new FirebaseRecyclerOptions.Builder<UserEntity>()
