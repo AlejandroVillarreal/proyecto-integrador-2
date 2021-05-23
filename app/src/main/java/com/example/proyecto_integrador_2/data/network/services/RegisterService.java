@@ -43,6 +43,9 @@ public class RegisterService {
                     hashMap.put("user_id", userEntity.user_id);
                     hashMap.put("name", userEntity.name);
                     hashMap.put("phone", userEntity.phone);
+                    hashMap.put("profile_pic", " ");
+                    hashMap.put("services", " ");
+                    hashMap.put("area_of_service", " ");
                     database.child(FirebaseTables.USERS.name).child(userEntity.user_id).setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
