@@ -70,7 +70,7 @@ public class HomeFragment extends Fragment implements ProfileInterface {
         //adapter.startListening();
         if (databaseReference != null) {
             Log.d(TAG, "Showing unfiltered data");
-            firebaseQuery = FirebaseDatabase.getInstance().getReference().child("Users");
+            firebaseQuery = FirebaseDatabase.getInstance().getReference().child("Users").orderByValue();
             //firebaseQuery = FirebaseDatabase.getInstance().getReference().child("Users").orderByChild("name").equalTo("Alejandro Villarreal");
             FirebaseRecyclerOptions<UserEntity> options =
                     new FirebaseRecyclerOptions.Builder<UserEntity>()

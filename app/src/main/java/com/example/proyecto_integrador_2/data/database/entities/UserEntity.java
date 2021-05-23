@@ -21,4 +21,6 @@ public class UserEntity {
     public String profile_pic;
     @ColumnInfo(name = "SERVICE_AREA")
     public String area_of_service;
+    @ColumnInfo(name = "SERVICES")
+    public String services;
 }

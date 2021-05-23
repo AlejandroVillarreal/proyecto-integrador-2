@@ -39,6 +39,7 @@ public class myAdapter extends FirebaseRecyclerAdapter<UserEntity, myAdapter.myV
         myViewholder.email.setText(userEntity.email);
         myViewholder.phone.setText(userEntity.phone);
         myViewholder.area_of_service.setText(userEntity.area_of_service);
+        myViewholder.service.setText(userEntity.services);
         Glide.with(myViewholder.image.getContext()).load(userEntity.profile_pic).into(myViewholder.image);
 
         myViewholder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +54,7 @@ public class myAdapter extends FirebaseRecyclerAdapter<UserEntity, myAdapter.myV
     class myViewholder extends RecyclerView.ViewHolder {
 
         ImageView image;
-        TextView name, email, phone, area_of_service;
+        TextView name, email, phone, area_of_service, service;
 
         public myViewholder(@NonNull View itemView) {
             super(itemView);
@@ -62,6 +63,7 @@ public class myAdapter extends FirebaseRecyclerAdapter<UserEntity, myAdapter.myV
             email = itemView.findViewById(R.id.textViewEmail);
             phone = itemView.findViewById(R.id.textViewPhone);
             area_of_service = itemView.findViewById(R.id.textViewServiceArea);
+            service = itemView.findViewById(R.id.textViewServices);
         }
     }
 

@@ -21,6 +21,7 @@ public class UserMapper {
         user.phone = values.get("phone");
         user.profile_pic = values.get("profile_pic");
         user.area_of_service = values.get("area_of_service");
+        user.services = values.get("services");
         return user;
     }
 }
