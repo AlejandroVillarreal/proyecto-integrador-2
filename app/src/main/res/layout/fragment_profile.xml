@@ -1,315 +1,317 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.profile.ProfileFragment">
-
-    <Button
-        android:id="@+id/btnUpdate"
-        android:layout_width="135dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="150dp"
-        android:text="Actualizar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRequestService" />
-
-    <ImageView
-        android:id="@+id/imageProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="5dp"
-        android:layout_weight="1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/edit_image"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/soporte_tecnico_small" />
-
-    <EditText
-        android:id="@+id/editTextName"
+    android:fillViewport="true">
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="6dp"
-        android:ems="10"
-        android:hint="@string/nombre_completo"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/chipGroup"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        tools:context=".ui.profile.ProfileFragment">
 
-    <EditText
-        android:id="@+id/editTextBuisness"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
-        android:ems="10"
-        android:hint="Empresa"
-        android:inputType="textPersonName"
-        android:text="FIME"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextName" />
+        <Button
+            android:id="@+id/btnUpdate"
+            android:layout_width="135dp"
+            android:layout_height="53dp"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="150dp"
+            android:text="Actualizar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewRequestService" />
 
-    <EditText
-        android:id="@+id/editTextEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
-        android:ems="10"
-        android:hint="Email"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextBuisness" />
+        <ImageView
+            android:id="@+id/imageProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="100dp"
+            android:layout_marginRight="100dp"
+            android:layout_weight="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/soporte_tecnico_small" />
 
-    <EditText
-        android:id="@+id/editTextPhone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
-        android:ems="10"
-        android:hint="Telefono"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
+        <EditText
+            android:id="@+id/editTextName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="6dp"
+            android:ems="10"
+            android:hint="@string/nombre_completo"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/chipGroup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/editTextService"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
-        android:ems="10"
-        android:hint="Servicio"
-        android:inputType="textPersonName"
-        android:text="Electricista, Mecánico"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
+        <EditText
+            android:id="@+id/editTextBuisness"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:ems="10"
+            android:hint="Empresa"
+            android:inputType="textPersonName"
+            android:text="FIME"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextName" />
 
-    <ImageView
-        android:id="@+id/estrella1"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="10dp"
-        android:src="@drawable/estrella_gris"
-        app:layout_constraintEnd_toStartOf="@+id/estrella2"
-        app:layout_constraintTop_toTopOf="@+id/estrella2" />
+        <EditText
+            android:id="@+id/editTextEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:ems="10"
+            android:hint="Email"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextBuisness" />
 
-    <ImageView
-        android:id="@+id/estrella2"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="10dp"
-        android:src="@drawable/estrella_gris"
-        app:layout_constraintEnd_toStartOf="@+id/estrella3"
-        app:layout_constraintTop_toTopOf="@+id/estrella3" />
+        <EditText
+            android:id="@+id/editTextPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:ems="10"
+            android:hint="Telefono"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
 
-    <ImageView
-        android:id="@+id/estrella3"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="100dp"
-        android:src="@drawable/estrella_gris"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/editTextService"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:ems="10"
+            android:hint="Servicio"
+            android:inputType="textPersonName"
+            android:text="Electricista, Mecánico"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
 
-    <ImageView
-        android:id="@+id/estrella4"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="10dp"
-        android:src="@drawable/estrella_gris"
-        app:layout_constraintStart_toEndOf="@+id/estrella3"
-        app:layout_constraintTop_toTopOf="@+id/estrella3" />
+        <ImageView
+            android:id="@+id/estrella1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/estrella_gris"
+            app:layout_constraintEnd_toStartOf="@+id/estrella2"
+            app:layout_constraintTop_toTopOf="@+id/estrella2" />
 
-    <ImageView
-        android:id="@+id/estrella5"
-        android:layout_width="40dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="129dp"
-        android:src="@drawable/estrella_gris"
-        app:layout_constraintBottom_toTopOf="@+id/edit_image"
-        app:layout_constraintStart_toEndOf="@+id/estrella4"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/estrella2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/estrella_gris"
+            app:layout_constraintEnd_toStartOf="@+id/estrella3"
+            app:layout_constraintTop_toTopOf="@+id/estrella3" />
 
-    <ImageView
-        android:id="@+id/imageViewWhatsApp"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="41dp"
-        android:src="@drawable/whatsapp"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewRequestService"
-        app:layout_constraintStart_toEndOf="@+id/textViewRequestService"
-        app:layout_constraintTop_toTopOf="@+id/textViewRequestService" />
+        <ImageView
+            android:id="@+id/estrella3"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="100dp"
+            android:src="@drawable/estrella_gris"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textViewRequestService"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="150dp"
-        android:text="Solicitar servicio"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextService" />
+        <ImageView
+            android:id="@+id/estrella4"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/estrella_gris"
+            app:layout_constraintStart_toEndOf="@+id/estrella3"
+            app:layout_constraintTop_toTopOf="@+id/estrella3" />
 
-    <Button
-        android:id="@+id/btnCalif"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="150dp"
-        android:text="Calificar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRequestService" />
+        <ImageView
+            android:id="@+id/estrella5"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/estrella_gris"
+            app:layout_constraintBottom_toBottomOf="@+id/estrella3"
+            app:layout_constraintStart_toEndOf="@+id/estrella4"
+            app:layout_constraintTop_toTopOf="@+id/estrella3" />
 
-    <View
-        android:id="@+id/viewModal"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="100dp"
-        android:background="#DEDEDE"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/imageViewWhatsApp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="41dp"
+            android:src="@drawable/whatsapp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewRequestService"
+            app:layout_constraintStart_toEndOf="@+id/textViewRequestService"
+            app:layout_constraintTop_toTopOf="@+id/textViewRequestService" />
 
-    <TextView
-        android:id="@+id/textViewCalif"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
-        android:layout_marginBottom="50dp"
-        android:text="Califica mi servicio"
-        android:textSize="16sp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/viewModal"
-        app:layout_constraintEnd_toEndOf="@+id/viewModal"
-        app:layout_constraintStart_toStartOf="@+id/viewModal"
-        app:layout_constraintTop_toTopOf="@+id/viewModal" />
+        <TextView
+            android:id="@+id/textViewRequestService"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="150dp"
+            android:text="Solicitar servicio"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextService" />
 
-    <ImageView
-        android:id="@+id/estrella6"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="10dp"
-        android:src="@drawable/estrella_gris"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toStartOf="@+id/estrella7"
-        app:layout_constraintTop_toTopOf="@+id/estrella7" />
+        <Button
+            android:id="@+id/btnCalif"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="150dp"
+            android:text="Calificar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewRequestService" />
 
-    <ImageView
-        android:id="@+id/estrella7"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="10dp"
-        android:src="@drawable/estrella_gris"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toStartOf="@+id/estrella8"
-        app:layout_constraintTop_toTopOf="@+id/estrella8" />
+        <View
+            android:id="@+id/viewModal"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="100dp"
+            android:background="#DEDEDE"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/estrella8"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="100dp"
-        android:src="@drawable/estrella_gris"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.561"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewCalif" />
+        <TextView
+            android:id="@+id/textViewCalif"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginBottom="50dp"
+            android:text="Califica mi servicio"
+            android:textSize="16sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/viewModal"
+            app:layout_constraintEnd_toEndOf="@+id/viewModal"
+            app:layout_constraintStart_toStartOf="@+id/viewModal"
+            app:layout_constraintTop_toTopOf="@+id/viewModal" />
 
-    <ImageView
-        android:id="@+id/estrella9"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="10dp"
-        android:src="@drawable/estrella_gris"
-        android:visibility="invisible"
-        app:layout_constraintStart_toEndOf="@+id/estrella8"
-        app:layout_constraintTop_toTopOf="@+id/estrella8" />
+        <ImageView
+            android:id="@+id/estrella6"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/estrella_gris"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@+id/estrella7"
+            app:layout_constraintTop_toTopOf="@+id/estrella7" />
 
-    <ImageView
-        android:id="@+id/estrella10"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="10dp"
-        android:src="@drawable/estrella_gris"
-        android:visibility="invisible"
-        app:layout_constraintStart_toEndOf="@+id/estrella9"
-        app:layout_constraintTop_toTopOf="@+id/estrella9" />
+        <ImageView
+            android:id="@+id/estrella7"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/estrella_gris"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@+id/estrella8"
+            app:layout_constraintTop_toTopOf="@+id/estrella8" />
 
-    <TextView
-        android:id="@+id/lblCalif"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:text="0.0"
-        app:layout_constraintBottom_toBottomOf="@+id/estrella3"
-        app:layout_constraintStart_toEndOf="@+id/estrella5" />
+        <ImageView
+            android:id="@+id/estrella8"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="100dp"
+            android:src="@drawable/estrella_gris"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.561"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewCalif" />
 
-    <ImageView
-        android:id="@+id/edit_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="523dp"
-        android:src="@drawable/outline_edit_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageProfile"
-        app:layout_constraintTop_toBottomOf="@+id/estrella5" />
+        <ImageView
+            android:id="@+id/estrella9"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/estrella_gris"
+            android:visibility="invisible"
+            app:layout_constraintStart_toEndOf="@+id/estrella8"
+            app:layout_constraintTop_toTopOf="@+id/estrella8" />
 
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/chipGroup"
-        style="@style/Widget.MaterialComponents.Chip.Choice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/editTextService"
-        app:layout_constraintTop_toBottomOf="@+id/editTextName">
+        <ImageView
+            android:id="@+id/estrella10"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/estrella_gris"
+            android:visibility="invisible"
+            app:layout_constraintStart_toEndOf="@+id/estrella9"
+            app:layout_constraintTop_toTopOf="@+id/estrella9" />
 
-    </com.google.android.material.chip.ChipGroup>
+        <TextView
+            android:id="@+id/lblCalif"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="0.0"
+            app:layout_constraintBottom_toBottomOf="@+id/estrella3"
+            app:layout_constraintStart_toEndOf="@+id/estrella5" />
 
+        <ImageView
+            android:id="@+id/edit_image"
+            android:layout_width="30sp"
+            android:layout_height="30dp"
+            android:src="@drawable/outline_edit_24"
+            app:layout_constraintBottom_toBottomOf="@+id/imageProfile"
+            app:layout_constraintStart_toEndOf="@+id/imageProfile" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/editTextService"
+            app:layout_constraintTop_toBottomOf="@+id/editTextName">
+
+        </com.google.android.material.chip.ChipGroup>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
