@@ -1,0 +1,76 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "e646f355fbe4b127349ae9f3787acf5c",
+    "entities": [
+      {
+        "tableName": "USER_ENTITY",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `FIREBASE_ID` TEXT, `EMAIL` TEXT, `NAME` TEXT, `PHONE` TEXT, `PICTURE` TEXT, `SERVICE_AREA` TEXT, `SERVICES` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "user_id",
+            "columnName": "FIREBASE_ID",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "email",
+            "columnName": "EMAIL",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "NAME",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "phone",
+            "columnName": "PHONE",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "profile_pic",
+            "columnName": "PICTURE",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "area_of_service",
+            "columnName": "SERVICE_AREA",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "services",
+            "columnName": "SERVICES",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e646f355fbe4b127349ae9f3787acf5c')"
+    ]
+  }
+}
