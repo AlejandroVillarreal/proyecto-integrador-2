@@ -5,11 +5,13 @@
     <application
         android:name=".ServiceFinderApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Proyectointegrador2">
+        android:theme="@style/Theme.Proyectointegrador2"
+        android:largeHeap="true"
+        android:hardwareAccelerated="false">
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
