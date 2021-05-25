@@ -75,6 +75,7 @@ public class ProfileFragment extends Fragment {
     private ArrayList califications;
     private Boolean isGrading;
     private Map<String, Object> userData;
+    private String phone;
     // IMAGE UPLOAD
     private Uri imageUri;
     final String randomKey = UUID.randomUUID().toString();
@@ -242,6 +243,7 @@ public class ProfileFragment extends Fragment {
                     editTextName.setText(map.get("name").toString());
                     editTextEmail.setText(map.get("email").toString());
                     editTextPhone.setText(map.get("phone").toString());
+                    phone = map.get("phone").toString();
                     if (map.get("area_of_service") == null && map.get("services") == null) {
                         editTextArea_of_service.setText("");
                         editTextServices.setText("");
@@ -350,7 +352,6 @@ public class ProfileFragment extends Fragment {
                         map.put(name, message);
                     }
                     String name = map.get("name").toString();
-                    String phone = map.get("phone").toString();
 
                     if (name != null && name.length() > 0 && phone != null && phone.length() > 0){
                         PackageManager packageManager = getContext().getPackageManager();
